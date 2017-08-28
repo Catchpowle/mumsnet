@@ -1,0 +1,26 @@
+%p
+  %strong Title:
+  = @product.title
+%p
+  %strong Image:
+  %br/
+  = image_tag(@product.image, size: '640x400')
+%p
+  %strong Upload date:
+  = @product.created_at.strftime('%D')
+%p
+  %strong Uploaded by:
+  = @product.user.username
+%p
+  %strong Description:
+  = @product.description
+%p
+  %strong Categories:
+%ul
+  - @product.categories.each do |category|
+    %li= category.title
+= link_to 'Edit', edit_product_path(@product)
+|
+= link_to 'Delete', @product, method: :delete, data: { confirm: 'Are you sure?' }
+|
+= link_to 'Back', root_path
